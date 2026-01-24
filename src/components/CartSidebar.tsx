@@ -1,0 +1,84 @@
+"use client";
+
+import { useCart } from "./CartProvider";
+import { X } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
+
+export default function CartSidebar() {
+    const { cart, isCartOpen, toggleCart, removeFromCart, totalPrice } = useCart();
+    const { t } = useLanguage();
+
+    const checkoutWhatsApp = () => {
+        if (cart.length === 0) return;
+
+        let message = `${t("cart.whatsapp_msg")}\n\n`;
+        cart.forEach(item => {
+            message += `- ${item.name} x${item.quantity} (Rp ${(item.price * item.quantity).toLocaleString()})\n`;
+        });
+
+        message += `\nTotal: Rp ${totalPrice.toLocaleString()}`;
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/6281234567890?text=${encodedMessage}`, '_blank');
+    };
+
+    return (
+        <div
+            className={`fixed top-0 right-0 h-screen w-full max-w-[400px] z-[200] transition-transform duration-300 ease-in-out ${isCartOpen ? "translate-x-0" : "translate-x-full"
+                }`}
+        >
+            <div className="bg-white h-full p-8 flex flex-col border-l border-black">
+                <div className="flex justify-between items-center mb-12">
+                    <h3 className="text-3xl font-bold uppercase tracking-tighter">{t("cart.title")}</h3>
+                    <button onClick={toggleCart} className="p-2 hover:bg-black/5 transition-colors border border-black/5">
+                        <X className="w-6 h-6" />
+                    </button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto space-y-8 pr-2">
+                    {cart.length === 0 ? (
+                        <p className="text-black/30 text-center py-20 uppercase tracking-widest text-xs">{t("cart.empty") || "Your cart is empty"}</p>
+                    ) : (
+                        cart.map((item) => (
+                            <div key={item.id} className="flex justify-between items-center py-4 border-b border-black/5">
+                                <div>
+                                    <h4 className="font-semibold">{item.name}</h4>
+                                    <p className="text-sm text-muted">
+                                        {item.quantity} x Rp {item.price.toLocaleString()}
+                                    </p>
+                                </div>
+                                <button
+                                    onClick={() => removeFromCart(item.id)}
+                                    className="text-red-500 text-sm font-medium hover:underline"
+                                >
+                                    {t("cart.remove")}
+                                </button>
+                            </div>
+                        ))
+                    )}
+                </div>
+
+                <div className="pt-12 border-t border-black/10">
+                    <div className="flex justify-between items-center text-2xl font-bold mb-8 uppercase tracking-tighter">
+                        <span>Total</span>
+                        <span>IDR {totalPrice.toLocaleString("id-ID")}</span>
+                    </div>
+                    <button
+                        onClick={checkoutWhatsApp}
+                        disabled={cart.length === 0}
+                        className="w-full btn bg-black text-white hover:invert border border-black disabled:bg-black/20"
+                    >
+                        {t("cart.checkout")}
+                    </button>
+                </div>
+            </div>
+
+            {/* Overlay to close when clicking outside */}
+            {isCartOpen && (
+                <div
+                    className="fixed inset-0 -z-10 bg-black/20"
+                    onClick={toggleCart}
+                />
+            )}
+        </div>
+    );
+}

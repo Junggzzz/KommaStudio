@@ -1,0 +1,217 @@
+﻿
+> kopas-app@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.4 (Turbopack)
+
+  Creating an optimized production build ...
+node.exe : Error: 
+Cannot apply 
+unknown utility 
+class `px-8`. Are 
+you using CSS 
+modules or similar 
+and missing 
+`@reference`? https:
+//tailwindcss.com/do
+cs/functions-and-dir
+ectives#reference-di
+rective
+At C:\Program Files\
+nodejs\npm.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (Erro   
+ r: Cannot a...r    
+ence-directive:    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+    [2m[at 
+onInvalidCandidate (
+C:\Users\idaba\Porto
+folio iniHery\kopas-
+compro\node_modules\
+tailwindcss\dist\lib
+.js:21:1314)][0m
+    [2m[at Te (C:\U
+sers\idaba\Portofoli
+o iniHery\kopas-comp
+ro\node_modules\tail
+windcss\dist\lib.js:
+16:36652)][0m
+    [2m[at C:\Users
+\idaba\Portofolio in
+iHery\kopas-compro\n
+ode_modules\tailwind
+css\dist\lib.js:21:3
+55][0m
+    [2m[at Rr (C:\U
+sers\idaba\Portofoli
+o iniHery\kopas-comp
+ro\node_modules\tail
+windcss\dist\lib.js:
+3:1718)][0m
+    [2m[at _ (C:\Us
+ers\idaba\Portofolio
+ iniHery\kopas-compr
+o\node_modules\tailw
+indcss\dist\lib.js:3
+:1377)][0m
+    [2m[at $e (C:\U
+sers\idaba\Portofoli
+o iniHery\kopas-comp
+ro\node_modules\tail
+windcss\dist\lib.js:
+21:172)][0m
+    [2m[at un (C:\U
+sers\idaba\Portofoli
+o iniHery\kopas-comp
+ro\node_modules\tail
+windcss\dist\lib.js:
+38:294)][0m
+    [2m[at process.
+processTicksAndRejec
+tions (node:internal
+/process/task_queues
+:105:5)][0m
+    [2m[at async 
+cn (C:\Users\idaba\P
+ortofolio iniHery\ko
+pas-compro\node_modu
+les\tailwindcss\dist
+\lib.js:38:631)][0m
+    [2m[at async 
+Xr (C:\Users\idaba\P
+ortofolio iniHery\ko
+pas-compro\node_modu
+les\@tailwindcss\nod
+e\dist\index.js:10:3
+417)][0m
+
+> Build error 
+occurred
+Error: Turbopack 
+build failed with 1 
+errors:
+./src/app/globals.cs
+s
+Error evaluating 
+Node.js code
+CssSyntaxError: 
+tailwindcss: C:\User
+s\idaba\Portofolio i
+niHery\kopas-compro\
+src\app\globals.css:
+1:1: Cannot apply 
+unknown utility 
+class `px-8`. Are 
+you using CSS 
+modules or similar 
+and missing 
+`@reference`? https:
+//tailwindcss.com/do
+cs/functions-and-dir
+ectives#reference-di
+rective
+    at Input.error (
+node_modules/postcss
+/lib/input.js:135:16
+) [C:\Users\idaba\Po
+rtofolio iniHery\kop
+as-compro\.next\buil
+d\chunks\node_module
+s_fe693df6._.js:4651
+:22]
+    at Root.error (n
+ode_modules/postcss/
+lib/node.js:146:32) 
+[C:\Users\idaba\Port
+ofolio iniHery\kopas
+-compro\.next\build\
+chunks\node_modules_
+fe693df6._.js:928:38
+]
+    [at Object.Once 
+(C:\Users\idaba\Port
+ofolio iniHery\kopas
+-compro\node_modules
+\@tailwindcss\postcs
+s\dist\index.js:10:6
+911)]
+    [at process.proc
+essTicksAndRejection
+s (node:internal/pro
+cess/task_queues:105
+:5)]
+    at async 
+LazyResult.runAsync 
+(node_modules/postcs
+s/lib/lazy-result.js
+:293:11) [C:\Users\i
+daba\Portofolio iniH
+ery\kopas-compro\.ne
+xt\build\chunks\node
+_modules_fe693df6._.
+js:6206:21]
+    at async 
+transform (turbopack
+:///[turbopack-node]
+/transforms/postcss.
+ts:70:34) [C:\Users\
+idaba\Portofolio ini
+Hery\kopas-compro\.n
+ext\build\chunks\[ro
+ot-of-the-server]__5
+1225daf._.js:146:36]
+    at async run (tu
+rbopack:///[turbopac
+k-node]/ipc/evaluate
+.ts:92:23) [C:\Users
+\idaba\Portofolio in
+iHery\kopas-compro\.
+next\build\chunks\[r
+oot-of-the-server]__
+974941ed._.js:443:31
+]
+
+Import trace:
+  Client Component 
+Browser:
+    ./src/app/global
+s.css [Client 
+Component Browser]
+    ./src/app/layout
+.tsx [Server 
+Component]
+
+
+    at async 
+transform (turbopack
+:///[turbopack-node]
+/transforms/postcss.
+ts:70:34) [C:\Users\
+idaba\Portofolio ini
+Hery\kopas-compro\.n
+ext\build\chunks\[ro
+ot-of-the-server]__5
+1225daf._.js:146:36]
+)
+    at async run (tu
+rbopack:///[turbopac
+k-node]/ipc/evaluate
+.ts:92:23) [C:\Users
+\idaba\Portofolio in
+iHery\kopas-compro\.
+next\build\chunks\[r
+oot-of-the-server]__
+974941ed._.js:443:31
+])

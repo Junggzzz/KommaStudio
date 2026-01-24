@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | KOPAS Official</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="glass">
+                <a href="index.html" class="logo">
+                    <span class="brand-name">KOPAS</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="story.html">Our Story</a></li>
+                    <li><a href="b2b.html">B2B Solutions</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="impact.html">Impact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="cart-btn glass" onclick="toggleCart()">
+                        <span>🛒</span>
+                        <span id="cart-count">0</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Shop Sustainability</h1>
+                <p>Every purchase supports our mission to reduce coffee waste in Indonesia.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="p-card">
+                        <div class="p-img">
+                            <img src="https://images.unsplash.com/photo-1606131731641-fc1a525e982d?q=80&w=400&auto=format&fit=crop" alt="Coaster Set">
+                        </div>
+                        <div class="p-info">
+                            <h3>Coaster Set (4 pcs)</h3>
+                            <p>Handcrafted from 100% upcycled coffee grounds. Waterproof and durable.</p>
+                            <div class="p-price">Rp 150.000</div>
+                            <button class="btn btn-primary w-100" onclick="addToCart('coaster', 'Coaster Set', 150000)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="p-card">
+                        <div class="p-img">
+                            <img src="https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?q=80&w=400&auto=format&fit=crop" alt="Eco Briquettes">
+                        </div>
+                        <div class="p-info">
+                            <h3>Eco Coffee Briquettes</h3>
+                            <p>High-calorie fuel made from coffee waste. Perfect for BBQ and smoke-free heating.</p>
+                            <div class="p-price">Rp 85.000</div>
+                            <button class="btn btn-primary w-100" onclick="addToCart('briquette', 'Eco Briquettes', 85000)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="p-card">
+                        <div class="p-img">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop" alt="Eco Amenities">
+                        </div>
+                        <div class="p-info">
+                            <h3>Hospitality Amenities</h3>
+                            <p>Set of soap dishes and toothbrushes holders made from coffee grounds.</p>
+                            <div class="p-price">Rp 250.000</div>
+                            <button class="btn btn-primary w-100" onclick="addToCart('amenities', 'Hospitality Amenities', 250000)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="p-card">
+                        <div class="p-img">
+                            <img src="https://images.unsplash.com/photo-1416870230247-d06589b280fb?q=80&w=400&auto=format&fit=crop" alt="Organic Fertilizer">
+                        </div>
+                        <div class="p-info">
+                            <h3>Organic Coffee Fertilizer</h3>
+                            <p>Nutrient-rich soil booster. 100% natural and effective for garden plants.</p>
+                            <div class="p-price">Rp 45.000</div>
+                            <button class="btn btn-primary w-100" onclick="addToCart('fertilizer', 'Organic Fertilizer', 45000)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Side Cart -->
+    <div id="cart-sidebar" class="glass">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button onclick="toggleCart()" class="close-btn">&times;</button>
+        </div>
+        <div id="cart-items">
+            <!-- Items added via JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="total-price">Rp 0</span>
+            </div>
+            <button class="btn btn-secondary w-100" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 KOPAS Official. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
