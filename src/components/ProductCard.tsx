@@ -38,10 +38,10 @@ export default function ProductCard({ id, name, price, description, imageUrl, is
                     )}
                 </div>
             </div>
-            <div className="bg-white p-12 space-y-8 border-x border-b border-black/5 transition-all group-hover:bg-black group-hover:text-white duration-500">
+            <div className="bg-white p-6 md:p-12 space-y-6 md:space-y-8 border-x border-b border-black/5 transition-all group-hover:bg-black group-hover:text-white duration-500">
                 <div className="space-y-4">
-                    <h3 className="text-2xl font-bold uppercase tracking-tighter leading-none">{name}</h3>
-                    <p className="text-black/40 text-xs leading-relaxed uppercase tracking-widest line-clamp-2 group-hover:text-white/40">{description}</p>
+                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tighter leading-none">{name}</h3>
+                    <p className="text-black/40 text-[10px] md:text-xs leading-relaxed uppercase tracking-widest line-clamp-2 group-hover:text-white/40">{description}</p>
                 </div>
                 <div className="flex justify-between items-end pt-4 border-t border-black/5 group-hover:border-white/10">
                     <p className="text-xl font-bold tracking-tighter">IDR {price.toLocaleString("id-ID")}</p>

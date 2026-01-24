@@ -7,7 +7,7 @@ import { ShoppingCart, Menu, X, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -98,7 +98,7 @@ export default function Navbar() {
                         >
                             <ShoppingCart className="w-5 h-5" aria-hidden="true" />
                             {totalItems > 0 && (
-                                <span className="absolute top-1 right-0 bg-black text-white text-[7px] font-bold w-4 h-4 flex items-center justify-center">
+                                <span className="absolute -top-1 -right-1 bg-black text-white text-[8px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
                                     {totalItems}
                                 </span>
                             )}
@@ -108,54 +108,82 @@ export default function Navbar() {
                         </Link>
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="md:hidden p-2 text-black"
+                            className="md:hidden p-2 text-black focus:outline-none"
                             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                         >
-                            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            {isMobileMenuOpen ? (
+                                <X className="w-6 h-6" />
+                            ) : (
+                                <div className="flex flex-col gap-1.5 w-6 items-end">
+                                    <span className="block h-0.5 w-6 bg-black" />
+                                    <span className="block h-0.5 w-3 bg-black" />
+                                    <span className="block h-0.5 w-6 bg-black" />
+                                </div>
+                            )}
                         </button>
                     </div>
                 </nav>
             </div>
 
             {/* Mobile Menu Overlay */}
-            <motion.div
-                initial={{ opacity: 0, x: "100%" }}
-                animate={{
-                    opacity: isMobileMenuOpen ? 1 : 0,
-                    x: isMobileMenuOpen ? 0 : "100%"
-                }}
-                transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="fixed inset-0 bg-white z-[90] flex flex-col pt-32 px-8 md:hidden"
-            >
-                <div className="flex flex-col gap-8">
-                    {navLinks.map((link, index) => (
-                        <motion.div
-                            key={link.href}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: isMobileMenuOpen ? 1 : 0, y: isMobileMenuOpen ? 0 : 20 }}
-                            transition={{ delay: index * 0.1 }}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="fixed inset-0 bg-white z-[200] flex flex-col pt-32 px-8 h-[calc(100vh-4rem)] md:hidden"
+                    >
+                        <button
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="absolute top-8 right-6 p-2 text-black"
+                            aria-label="Close menu"
                         >
-                            <Link
-                                href={link.href}
-                                className={`text-3xl font-heading tracking-tight ${pathname === link.href ? "text-black" : "text-black/40"
-                                    }`}
-                            >
-                                {link.name}
-                            </Link>
-                        </motion.div>
-                    ))}
-                </div>
+                            <X className="w-8 h-8" />
+                        </button>
+                        <div className="flex flex-col gap-8">
+                            {navLinks.map((link, index) => (
+                                <motion.div
+                                    key={link.href}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: isMobileMenuOpen ? 1 : 0, y: isMobileMenuOpen ? 0 : 20 }}
+                                    transition={{ delay: index * 0.1 }}
+                                >
+                                    <Link
+                                        href={link.href}
+                                        className={`text-2xl font-heading tracking-tighter uppercase font-bold ${pathname === link.href ? "text-black" : "text-black/30"
+                                            }`}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
 
-                <div className="mt-auto mb-20 space-y-8">
-                    <Link href="/shop" className="block text-center text-[10px] uppercase tracking-[0.5em] font-bold text-white bg-black py-6 border border-black">
-                        {t("nav.collection")}
-                    </Link>
-                    <div className="flex justify-center gap-10 text-[10px] uppercase tracking-[0.4em] text-black/40">
-                        <button onClick={() => setLang("id")} className={lang === "id" ? "text-black" : ""}>ID</button>
-                        <button onClick={() => setLang("en")} className={lang === "en" ? "text-black" : ""}>EN</button>
-                    </div>
-                </div>
-            </motion.div>
+                        <div className="mt-auto mb-20 space-y-8">
+                            <Link href="/shop" className="block text-center text-[10px] uppercase tracking-[0.5em] font-bold text-white bg-black py-5 border border-black hover:invert transition-all">
+                                {t("nav.collection")}
+                            </Link>
+                            <div className="flex justify-center items-center gap-2 text-[10px] font-bold uppercase tracking-widest border border-black px-6 py-3 self-center" role="group">
+                                <button
+                                    onClick={() => setLang("id")}
+                                    className={`${lang === "id" ? "text-black" : "text-black/30"} transition-colors`}
+                                >
+                                    ID
+                                </button>
+                                <span className="text-black/20">/</span>
+                                <button
+                                    onClick={() => setLang("en")}
+                                    className={`${lang === "en" ? "text-black" : "text-black/30"} transition-colors`}
+                                >
+                                    EN
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.header>
     );
 }

@@ -7,9 +7,9 @@ export default function Footer() {
     return (
         <footer className="bg-black text-white py-24 border-t border-white/10">
             <div className="container px-6 md:px-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-24">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 md:gap-16 mb-24">
                     <div className="space-y-6">
-                        <h2 className="text-3xl font-heading font-bold uppercase tracking-tighter">KOPAS</h2>
+                        <h2 className="text-4xl md:text-3xl font-heading font-bold uppercase tracking-tighter">KOPAS</h2>
                         <p className="text-white/40 text-xs uppercase tracking-widest leading-loose max-w-xs">
                             {t("footer.tagline")}
                         </p>

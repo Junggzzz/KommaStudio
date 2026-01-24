@@ -97,20 +97,20 @@ export default function Home() {
                 {t("hero.est")}
               </span>
 
-              <h1 className="text-7xl md:text-[9rem] font-heading font-bold leading-[0.85] tracking-tighter text-black uppercase">
+              <h1 className="text-5xl md:text-[9rem] font-heading font-bold leading-[0.85] tracking-tighter text-black uppercase">
                 {t("hero.bespoke")} <br />
                 <span className="text-black/20">{t("hero.circular")}</span>
               </h1>
 
-              <p className="text-black/50 text-base md:text-lg font-light leading-relaxed max-w-md uppercase tracking-[0.3em] text-[10px] md:text-[12px]">
+              <p className="text-black/50 text-sm md:text-lg font-light leading-relaxed max-w-md uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-[12px]">
                 {t("mission.desc")}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-6 pt-4">
-                <Link href="/shop" className="btn bg-black text-white hover:invert border border-black text-center">
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4">
+                <Link href="/shop" className="btn bg-black text-white hover:invert border border-black text-center text-xs md:text-sm">
                   {t("hero.collection")}
                 </Link>
-                <Link href="/b2b" className="btn border border-black text-black hover:bg-black hover:text-white text-center">
+                <Link href="/b2b" className="btn border border-black text-black hover:bg-black hover:text-white text-center text-xs md:text-sm">
                   {t("hero.custom")}
                 </Link>
               </div>
@@ -160,7 +160,7 @@ export default function Home() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-center space-y-16"
             >
-              <h2 className="text-5xl md:text-7xl font-heading leading-[0.9] text-black uppercase tracking-tighter">
+              <h2 className="text-4xl md:text-7xl font-heading leading-[0.9] text-black uppercase tracking-tighter">
                 {t("mission.title")} <br />
                 <span className="italic font-light text-black/30 lowercase">{t("mission.subtitle")}</span>
               </h2>
@@ -175,7 +175,7 @@ export default function Home() {
         </section>
 
         {/* Product Spotlight - High Interactivity */}
-        <section className="py-32 md:py-48 bg-black text-white">
+        <section className="py-32 md:py-48 bg-black text-black">
           <div className="container px-6 md:px-12">
             <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12 border-b border-white/10 pb-12">
               <motion.div
@@ -184,7 +184,7 @@ export default function Home() {
                 className="space-y-4"
               >
                 <span className="text-[20px] uppercase tracking-[0.5em] text-white/30 block">01 / Collection</span>
-                <h2 className="text-5xl md:text-7xl font-heading font-bold uppercase tracking-tighter ">
+                <h2 className="text-4xl md:text-7xl font-heading font-bold uppercase tracking-tighter ">
                   {t("product.selected")}
                 </h2>
               </motion.div>
