@@ -19,7 +19,7 @@ export default function FloatingInquiry() {
         return () => window.removeEventListener("scroll", toggleVisibility);
     }, []);
 
-    const whatsappNumber = "628123456789"; // Example number
+    const whatsappNumber = "6285941320478";
     const message = "Halo KOPAS Official, saya tertarik dengan layanan B2B/Bulk Order. Bisa bantu jelaskan lebih lanjut?";
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 

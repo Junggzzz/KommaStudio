@@ -3,13 +3,28 @@
 import { useCart } from "./CartProvider";
 import { X } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
+import { useState } from "react";
+import { saveOrder } from "@/lib/firestore";
 
 export default function CartSidebar() {
-    const { cart, isCartOpen, toggleCart, removeFromCart, totalPrice } = useCart();
+    const { cart, isCartOpen, toggleCart, removeFromCart, totalPrice, clearCart } = useCart();
     const { t } = useLanguage();
+    const [checking, setChecking] = useState(false);
 
-    const checkoutWhatsApp = () => {
+    const checkoutWhatsApp = async () => {
         if (cart.length === 0) return;
+        setChecking(true);
+
+        try {
+            // Simpan order ke Firestore sebelum redirect ke WhatsApp
+            await saveOrder(
+                cart.map(({ id, name, price, quantity }) => ({ id, name, price, quantity })),
+                totalPrice
+            );
+        } catch (err) {
+            console.error("Gagal menyimpan order:", err);
+            // Tetap lanjutkan ke WhatsApp meski Firestore gagal
+        }
 
         let message = `${t("cart.whatsapp_msg")}\n\n`;
         cart.forEach(item => {
@@ -18,7 +33,9 @@ export default function CartSidebar() {
 
         message += `\nTotal: Rp ${totalPrice.toLocaleString()}`;
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/6281234567890?text=${encodedMessage}`, '_blank');
+        window.open(`https://wa.me/6285941320478?text=${encodedMessage}`, '_blank');
+        clearCart();
+        setChecking(false);
     };
 
     return (
@@ -64,10 +81,10 @@ export default function CartSidebar() {
                     </div>
                     <button
                         onClick={checkoutWhatsApp}
-                        disabled={cart.length === 0}
+                        disabled={cart.length === 0 || checking}
                         className="w-full btn bg-black text-white hover:invert border border-black disabled:bg-black/20"
                     >
-                        {t("cart.checkout")}
+                        {checking ? "Memproses..." : t("cart.checkout")}
                     </button>
                 </div>
             </div>
