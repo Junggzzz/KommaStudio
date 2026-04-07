@@ -1,6 +1,43 @@
 import { collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "firebase/firestore";
 import { db } from "./firebase";
 
+
+// ─── Products (Shop) ─────────────────────────────────────────────────────────
+
+export interface ProductData {
+    nameEn: string;
+    nameId: string;
+    descriptionEn: string;
+    descriptionId: string;
+    price: number;
+    imageUrl: string;
+}
+
+export async function getProducts() {
+    const q = query(collection(db, "products"));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+export async function addProduct(data: ProductData): Promise<void> {
+    await addDoc(collection(db, "products"), {
+        ...data,
+        createdAt: serverTimestamp(),
+    });
+}
+
+export async function updateProduct(productId: string, data: Partial<ProductData>): Promise<void> {
+    const { doc, updateDoc } = await import("firebase/firestore");
+    const productRef = doc(db, "products", productId);
+    await updateDoc(productRef, data);
+}
+
+export async function deleteProduct(productId: string): Promise<void> {
+    const { doc, deleteDoc } = await import("firebase/firestore");
+    const productRef = doc(db, "products", productId);
+    await deleteDoc(productRef);
+}
+
 // ─── B2B Inquiry ────────────────────────────────────────────────────────────
 
 export interface InquiryData {

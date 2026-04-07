@@ -1,68 +1,32 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import { useLanguage } from "@/components/LanguageProvider";
+import { getProducts, ProductData } from "@/lib/firestore";
+
+interface ProductWithId extends ProductData {
+    id: string;
+}
 
 export default function ShopPage() {
-    const { t } = useLanguage();
-    const products = [
-        {
-            id: "candle",
-            name: t("product.candle.name"),
-            price: 125000,
-            description: t("product.candle.desc"),
-            imageUrl: "/images/products/candle.png",
-        },
-        {
-            id: "coasters",
-            name: t("product.coasters.name"),
-            price: 185000,
-            description: t("product.coasters.desc"),
-            imageUrl: "/images/products/coasters.png",
-        },
-        {
-            id: "bodylotion",
-            name: t("product.lotion.name"),
-            price: 145000,
-            description: t("product.lotion.desc"),
-            imageUrl: "/images/products/bodylotion.png",
-        },
-        {
-            id: "coffeesoap",
-            name: t("product.soap.name"),
-            price: 65000,
-            description: t("product.soap.desc"),
-            imageUrl: "/images/products/coffeesoap.png",
-        },
-        {
-            id: "shampoo",
-            name: t("product.shampoo.name"),
-            price: 95000,
-            description: t("product.shampoo.desc"),
-            imageUrl: "/images/products/shampoo.png",
-        },
-        {
-            id: "conditioner",
-            name: t("product.conditioner.name"),
-            price: 95000,
-            description: t("product.conditioner.desc"),
-            imageUrl: "/images/products/conditioner.png",
-        },
-        {
-            id: "bodywash",
-            name: t("product.bodywash.name"),
-            price: 95000,
-            description: t("product.bodywash.desc"),
-            imageUrl: "/images/products/bodywash.png",
-        },
-        {
-            id: "aromacubes",
-            name: t("product.aromacubes.name"),
-            price: 110000,
-            description: t("product.aromacubes.desc"),
-            imageUrl: "/images/products/aromacubes.png",
-        },
-    ];
+    const { t, lang } = useLanguage();
+    const [products, setProducts] = useState<ProductWithId[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const data = await getProducts();
+                setProducts(data as ProductWithId[]);
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchProducts();
+    }, []);
 
     return (
         <div className="pt-24 min-h-screen bg-background">
@@ -83,9 +47,26 @@ export default function ShopPage() {
             <section className="py-24 md:py-32 bg-white">
                 <div className="container px-6 md:px-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px border border-black/5">
-                        {products.map((product) => (
-                            <ProductCard key={product.id} {...product} />
-                        ))}
+                        {loading ? (
+                            <div className="col-span-full py-24 text-center">
+                                <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-black/40">Loading Products...</p>
+                            </div>
+                        ) : products.length === 0 ? (
+                            <div className="col-span-full py-24 text-center">
+                                <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-black/40">No Products Available.</p>
+                            </div>
+                        ) : (
+                            products.map((product) => (
+                                <ProductCard 
+                                    key={product.id} 
+                                    id={product.id}
+                                    name={lang === "id" ? product.nameId : product.nameEn}
+                                    price={product.price}
+                                    description={lang === "id" ? product.descriptionId : product.descriptionEn}
+                                    imageUrl={product.imageUrl}
+                                />
+                            ))
+                        )}
                     </div>
 
                 </div>

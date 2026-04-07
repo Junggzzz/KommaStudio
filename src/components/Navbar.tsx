@@ -46,13 +46,12 @@ export default function Navbar() {
         >
             <div className="container-fluid px-6 md:px-12">
                 <nav className="flex justify-between items-center py-2">
-                    <Link href="/" className="flex items-center gap-3 group">
-                        <div className="w-8 h-8 bg-black flex items-center justify-center border border-black transition-all group-hover:invert">
-                            <img src="/logo-k.svg" alt="KOPAS Logo" className="w-5 h-5 invert" />
-                        </div>
-                        <span className="text-2xl font-heading tracking-tighter text-black font-bold uppercase">
-                            KOPAS
-                        </span>
+                    <Link href="/" className="group h-8 md:h-10">
+                        <img 
+                            src="/Ratakiri.svg" 
+                            alt="Ratakiri Logo" 
+                            className="h-full w-auto transition-transform duration-300 group-hover:scale-105" 
+                        />
                     </Link>
 
                     <ul className="hidden md:flex gap-12 items-center">
@@ -60,7 +59,7 @@ export default function Navbar() {
                             <li key={link.href}>
                                 <Link
                                     href={link.href}
-                                    className={`text-[9px] uppercase tracking-[0.4em] transition-all duration-300 hover:text-black ${pathname === link.href ? "text-black" : "text-black/30"
+                                    className={`text-[11px] uppercase tracking-[0.2em] font-bold transition-all duration-300 hover:text-black ${pathname === link.href ? "text-black" : "text-black/50"
                                         }`}
                                 >
                                     {link.name}
@@ -152,7 +151,7 @@ export default function Navbar() {
                                 >
                                     <Link
                                         href={link.href}
-                                        className={`text-2xl font-heading tracking-tighter uppercase font-bold ${pathname === link.href ? "text-black" : "text-black/30"
+                                        className={`text-2xl font-heading tracking-tighter uppercase font-bold ${pathname === link.href ? "text-black" : "text-black/50"
                                             }`}
                                     >
                                         {link.name}

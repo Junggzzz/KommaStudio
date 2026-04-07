@@ -53,12 +53,12 @@ export default function Home() {
       {
         "@type": "Organization",
         "@id": "https://kopasofficial.com/#organization",
-        "name": "KOPAS Official",
+        "name": "KOMMA STUDIO",
         "url": "https://kopasofficial.com",
         "logo": "https://kopasofficial.com/logo.png",
-        "description": "KOPAS mengubah limbah ampas kopi menjadi produk fungsional dan solusi eco-hospitality.",
+        "description": "KOMMA mengubah limbah ampas kopi menjadi produk fungsional dan solusi eco-hospitality.",
         "sameAs": [
-          "https://www.instagram.com/kopas.official"
+          "https://www.instagram.com/kommaastudio"
         ]
       },
       ...featuredProducts.map(product => ({

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, MessageSquareText, ShoppingBag, LogOut } from "lucide-react";
+import { LayoutDashboard, MessageSquareText, ShoppingBag, LogOut, Package } from "lucide-react";
 import { useEffect, useState } from "react";
 import { auth } from "@/lib/firebase";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
@@ -51,6 +51,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { href: "/admin", label: t("admin.dashboard"), icon: LayoutDashboard },
         { href: "/admin/inquiries", label: t("admin.inquiries"), icon: MessageSquareText },
         { href: "/admin/orders", label: t("admin.orders"), icon: ShoppingBag },
+        { href: "/admin/products", label: t("admin.products"), icon: Package },
     ];
 
     return (

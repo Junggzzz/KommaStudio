@@ -39,15 +39,9 @@ export default function B2BPage() {
     };
 
     return (
-        <div className="pt-32 bg-white">
+        <div className="pt-20">
             {/* Hero */}
-            <section className="relative min-h-[70vh] flex flex-col justify-center items-center text-white overflow-hidden">
-                <div
-                    className="absolute inset-0 z-[-1] bg-cover bg-center grayscale brightness-50"
-                    style={{
-                        backgroundImage: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/images/profile/b2b.png')"
-                    }}
-                />
+            <section className="bg-black py-24 md:py-32 text-white border-b border-white/10">
                 <div className="container px-6 md:px-12">
                     <div className="max-w-5xl">
                         <span className="text-white/40 font-bold tracking-[0.5em] uppercase text-[10px] md:text-xs mb-8 block">/ {t("b2b.subtitle")}</span>

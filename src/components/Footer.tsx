@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="container px-6 md:px-12">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 md:gap-16 mb-24">
                     <div className="space-y-6">
-                        <h2 className="text-4xl md:text-3xl font-heading font-bold uppercase tracking-tighter">KOPAS</h2>
+                        <img src="/Ratakiri.svg" alt="Ratakiri Logo" className="h-8 w-auto" />
                         <p className="text-white/40 text-xs uppercase tracking-widest leading-loose max-w-xs">
                             {t("footer.tagline")}
                         </p>
@@ -28,15 +28,15 @@ export default function Footer() {
                     <div className="space-y-8">
                         <h3 className="text-[10px] uppercase font-bold tracking-[0.5em] text-white/40 border-b border-white/10 pb-4">{t("footer.contact")}</h3>
                         <ul className="space-y-4">
-                            <li className="text-xs uppercase tracking-widest text-white/70">Email: hello@kopas.id</li>
-                            <li className="text-xs uppercase tracking-widest text-white/70">WhatsApp: +62 812 3456 7890</li>
+                            <li className="text-xs uppercase tracking-widest text-white/70">Email: kopiampasid@gmail.com</li>
+                            <li className="text-xs uppercase tracking-widest text-white/70">WhatsApp: +62 85847487597</li>
                             <li className="text-xs uppercase tracking-widest text-white/70">{t("footer.location")}: Bali, Indonesia</li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="pt-8 border-t border-white/5 text-center text-white/20 text-[9px] uppercase tracking-[0.4em]">
-                    <p>&copy; {new Date().getFullYear()} KOPAS Official. {t("footer.rights")}</p>
+                    <p>&copy; {new Date().getFullYear()} KOMMA STUDIO. {t("footer.rights")}</p>
                 </div>
             </div>
         </footer>
