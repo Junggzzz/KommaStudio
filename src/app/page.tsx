@@ -4,48 +4,33 @@ import Link from "next/link";
 import ProductCard from "@/components/ProductCard";
 import { useLanguage } from "@/components/LanguageProvider";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import { getProducts, ProductData } from "@/lib/firestore";
+
+interface ProductWithId extends ProductData {
+  id: string;
+}
 
 export default function Home() {
   const containerRef = useRef(null);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [products, setProducts] = useState<ProductWithId[]>([]);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  const featuredProducts = [
-    {
-      id: "candle",
-      name: t("product.candle.name"),
-      price: 125000,
-      description: t("product.candle.desc"),
-      imageUrl: "/images/products/candle.png",
-      isPremium: true,
-    },
-    {
-      id: "coasters",
-      name: t("product.coasters.name"),
-      price: 185000,
-      description: t("product.coasters.desc"),
-      imageUrl: "/images/products/coasters.png",
-      isPremium: true,
-    },
-    {
-      id: "bodywash",
-      name: t("product.bodywash.name"),
-      price: 95000,
-      description: t("product.bodywash.desc"),
-      imageUrl: "/images/products/bodywash.png",
-    },
-    {
-      id: "aromacubes",
-      name: t("product.aromacubes.name"),
-      price: 110000,
-      description: t("product.aromacubes.desc"),
-      imageUrl: "/images/products/aromacubes.png",
-    },
-  ];
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const data = await getProducts();
+        setProducts(data.slice(0, 4) as ProductWithId[]);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    }
+    fetchProducts();
+  }, []);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -61,10 +46,10 @@ export default function Home() {
           "https://www.instagram.com/kommaastudio"
         ]
       },
-      ...featuredProducts.map(product => ({
+      ...products.map(product => ({
         "@type": "Product",
-        "name": product.name,
-        "description": product.description,
+        "name": lang === "id" ? product.nameId : product.nameEn,
+        "description": lang === "id" ? product.descriptionId : product.descriptionEn,
         "image": product.imageUrl,
         "offers": {
           "@type": "Offer",
@@ -128,7 +113,7 @@ export default function Home() {
               className="w-full h-full object-cover grayscale opacity-80"
               alt="Hero Background"
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-l from-black/40 to-transparent pointer-events-none" />
 
             {/* Subtle Grid Overlay for "Tegas" look */}
             <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 pointer-events-none opacity-10">
@@ -165,7 +150,7 @@ export default function Home() {
                 <span className="italic font-light text-black/30 lowercase">{t("mission.subtitle")}</span>
               </h2>
 
-              <div className="w-24 h-[1px] bg-black/20 mx-auto" />
+              <div className="w-24 h-px bg-black/20 mx-auto" />
 
               <Link href="/story" className="text-[10px] uppercase font-bold tracking-[0.6em] text-black hover:opacity-50 transition-opacity">
                 {t("mission.discover")}
@@ -195,7 +180,7 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1px ">
-              {featuredProducts.map((product, index) => (
+              {products.map((product, index) => (
                 <motion.div
                   key={product.id}
                   initial={{ opacity: 0, y: 50 }}
@@ -203,7 +188,13 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2, duration: 1 }}
                 >
-                  <ProductCard {...product} />
+                  <ProductCard 
+                    id={product.id}
+                    name={lang === "id" ? product.nameId : product.nameEn}
+                    price={product.price}
+                    description={lang === "id" ? product.descriptionId : product.descriptionEn}
+                    imageUrl={product.imageUrl}
+                  />
                 </motion.div>
               ))}
             </div>

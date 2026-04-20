@@ -57,7 +57,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return (
         <div className="min-h-screen bg-white text-black flex flex-col md:flex-row pt-24 md:pt-32">
             {/* Sidebar */}
-            <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-black/10 flex-shrink-0 flex flex-col">
+            <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-black/10 shrink-0 flex flex-col">
                 <div className="p-8">
                     <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-black/40 mb-8">{t("admin.panel")}</p>
                     <nav className="space-y-2">
