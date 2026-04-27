@@ -25,14 +25,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kopasofficial.com"),
+  metadataBase: new URL("https://komma.studio"),
   title: "KOMMA | Produk Inovatif dari Ampas Kopi & Solusi Eco-Hospitality",
   description: "KOMMA mengubah limbah ampas kopi menjadi produk fungsional seperti coaster, briket aromatik, dan amenities hotel. Dukung gaya hidup berkelanjutan bersama KOPAS.",
   keywords: ["Ampas kopi berkelanjutan", "souvenir ramah lingkungan bali", "briket kopi aromatik", "amenities hotel ramah lingkungan", "circular economy indonesia"],
   icons: {
     icon: [
       { url: "/Ratakiri.svg" },
-      { url: "/icon.svg", type: "image/svg+xml" },
     ],
     apple: [
       { url: "/Ratakiri.svg" },

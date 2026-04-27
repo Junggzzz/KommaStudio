@@ -28,19 +28,19 @@ export default function CartSidebar() {
 
         let message = `${t("cart.whatsapp_msg")}\n\n`;
         cart.forEach(item => {
-            message += `- ${item.name} x${item.quantity} (Rp ${(item.price * item.quantity).toLocaleString()})\n`;
+            message += `- ${item.name} x${item.quantity} (IDR ${(item.price * item.quantity).toLocaleString()})\n`;
         });
 
-        message += `\nTotal: Rp ${totalPrice.toLocaleString()}`;
+        message += `\nTotal: IDR ${totalPrice.toLocaleString()}`;
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/6285941320478?text=${encodedMessage}`, '_blank');
+        window.open(`https://wa.me/6285847487597?text=${encodedMessage}`, '_blank');
         clearCart();
         setChecking(false);
     };
 
     return (
         <div
-            className={`fixed top-0 right-0 h-screen w-full max-w-[400px] z-[200] transition-transform duration-300 ease-in-out ${isCartOpen ? "translate-x-0" : "translate-x-full"
+            className={`fixed top-0 right-0 h-screen w-full max-w-[400px] z-200 transition-transform duration-300 ease-in-out ${isCartOpen ? "translate-x-0" : "translate-x-full"
                 }`}
         >
             <div className="bg-white h-full p-8 flex flex-col border-l border-black">
@@ -59,8 +59,8 @@ export default function CartSidebar() {
                             <div key={item.id} className="flex justify-between items-center py-4 border-b border-black/5">
                                 <div>
                                     <h4 className="font-semibold">{item.name}</h4>
-                                    <p className="text-sm text-muted">
-                                        {item.quantity} x Rp {item.price.toLocaleString()}
+                                    <p className="text-sm text-black/60">
+                                        {item.quantity} x IDR {item.price.toLocaleString("id-ID")}
                                     </p>
                                 </div>
                                 <button

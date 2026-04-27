@@ -118,7 +118,7 @@ export default function B2BPage() {
                                             name="name"
                                             value={form.name}
                                             onChange={handleChange}
-                                            className="w-full bg-transparent border-b border-white/20 py-4 focus:border-white transition-colors outline-none text-xl font-light rounded-none"
+                                            className="w-full bg-transparent border-b border-white/20 py-4 focus:border-white transition-colors outline-none text-white text-xl font-light rounded-none"
                                         />
                                     </div>
                                     <div className="space-y-4">
@@ -128,7 +128,7 @@ export default function B2BPage() {
                                             name="email"
                                             value={form.email}
                                             onChange={handleChange}
-                                            className="w-full bg-transparent border-b border-white/20 py-4 focus:border-white transition-colors outline-none text-xl font-light rounded-none"
+                                            className="w-full bg-transparent border-b border-white/20 py-4 focus:border-white transition-colors outline-none text-white text-xl font-light rounded-none"
                                         />
                                     </div>
                                     <div className="space-y-4">
@@ -138,7 +138,7 @@ export default function B2BPage() {
                                             name="company"
                                             value={form.company}
                                             onChange={handleChange}
-                                            className="w-full bg-transparent border-b border-white/20 py-4 focus:border-white transition-colors outline-none text-xl font-light rounded-none"
+                                            className="w-full bg-transparent border-b border-white/20 py-4 focus:border-white transition-colors outline-none text-white text-xl font-light rounded-none"
                                         />
                                     </div>
                                     <div className="space-y-4">
@@ -148,7 +148,7 @@ export default function B2BPage() {
                                             name="message"
                                             value={form.message}
                                             onChange={handleChange}
-                                            className="w-full bg-transparent border-b border-white/20 py-4 focus:border-white transition-colors outline-none text-xl font-light resize-none rounded-none"
+                                            className="w-full bg-transparent border-b border-white/20 py-4 focus:border-white transition-colors outline-none text-white text-xl font-light resize-none rounded-none"
                                         />
                                     </div>
 

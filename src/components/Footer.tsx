@@ -28,7 +28,7 @@ export default function Footer() {
                     <div className="space-y-8">
                         <h3 className="text-[10px] uppercase font-bold tracking-[0.5em] text-white/40 border-b border-white/10 pb-4">{t("footer.contact")}</h3>
                         <ul className="space-y-4">
-                            <li className="text-xs uppercase tracking-widest text-white/70">Email: kopiampasid@gmail.com</li>
+                            <li className="text-xs uppercase tracking-widest text-white/70">Email: hello@kommastudio.com</li>
                             <li className="text-xs uppercase tracking-widest text-white/70">WhatsApp: +62 85847487597</li>
                             <li className="text-xs uppercase tracking-widest text-white/70">{t("footer.location")}: Bali, Indonesia</li>
                         </ul>

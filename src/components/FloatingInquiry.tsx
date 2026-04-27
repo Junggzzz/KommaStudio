@@ -19,14 +19,14 @@ export default function FloatingInquiry() {
         return () => window.removeEventListener("scroll", toggleVisibility);
     }, []);
 
-    const whatsappNumber = "6285941320478";
-    const message = "Halo KOPAS Official, saya tertarik dengan layanan B2B/Bulk Order. Bisa bantu jelaskan lebih lanjut?";
+    const whatsappNumber = "6285847487597";
+    const message = "Halo KOMMA STUDIO, saya tertarik dengan layanan B2B/Bulk Order. Bisa bantu jelaskan lebih lanjut?";
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
     if (!isVisible) return null;
 
     return (
-        <div className="fixed bottom-8 right-8 z-[150] flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-5 duration-500">
+        <div className="fixed bottom-8 right-8 z-150 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-5 duration-500">
             {/* Tooltip for B2B */}
             {/* Tooltip for B2B */}
             <div className="bg-black text-white px-4 py-2 rounded-none text-[10px] uppercase tracking-widest font-bold shadow-none border border-white/20 relative before:content-[''] before:absolute before:top-full before:right-4 before:border-8 before:border-transparent before:border-t-black">

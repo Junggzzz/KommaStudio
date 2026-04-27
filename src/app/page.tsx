@@ -188,7 +188,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2, duration: 1 }}
                 >
-                  <ProductCard 
+                  <ProductCard
                     id={product.id}
                     name={lang === "id" ? product.nameId : product.nameEn}
                     price={product.price}
