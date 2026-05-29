@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, limit } from "firebase/firestore";
 import { db } from "./firebase";
 
 
@@ -13,8 +13,11 @@ export interface ProductData {
     imageUrl: string;
 }
 
-export async function getProducts() {
-    const q = query(collection(db, "products"));
+export async function getProducts(queryLimit?: number) {
+    let q = query(collection(db, "products"));
+    if (queryLimit) {
+        q = query(collection(db, "products"), limit(queryLimit));
+    }
     const snapshot = await getDocs(q);
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }

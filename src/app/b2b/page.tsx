@@ -58,7 +58,7 @@ export default function B2BPage() {
                 <div className="container px-6 md:px-12">
                     <div className="text-left mb-24">
                         <h2 className="text-4xl md:text-6xl font-heading font-bold text-black uppercase tracking-tighter mb-8">{t("b2b.partner")}</h2>
-                        <div className="w-24 h-[1px] bg-black" />
+                        <div className="w-24 h-1px bg-black" />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-black border border-black">

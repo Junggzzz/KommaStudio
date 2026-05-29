@@ -20,27 +20,27 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const data = await getProducts();
-        setProducts(data.slice(0, 4) as ProductWithId[]);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
+    useEffect(() => {
+      async function fetchProducts() {
+        try {
+          const data = await getProducts(4);
+          setProducts(data as ProductWithId[]);
+        } catch (error) {
+          console.error("Failed to fetch products:", error);
+        }
       }
-    }
-    fetchProducts();
-  }, []);
+      fetchProducts();
+    }, []);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://kopasofficial.com/#organization",
+        "@id": "https://www.kommastudio.my.id/#organization",
         "name": "KOMMA STUDIO",
-        "url": "https://kopasofficial.com",
-        "logo": "https://kopasofficial.com/logo.png",
+        "url": "https://www.kommastudio.my.id",
+        "logo": "https://www.kommastudio.my.id/logo.png",
         "description": "KOMMA mengubah limbah ampas kopi menjadi produk fungsional dan solusi eco-hospitality.",
         "sameAs": [
           "https://www.instagram.com/kommaastudio"
