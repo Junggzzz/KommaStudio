@@ -31,12 +31,12 @@ export const metadata: Metadata = {
   keywords: ["Ampas kopi berkelanjutan", "souvenir ramah lingkungan bali", "briket kopi aromatik", "amenities hotel ramah lingkungan", "circular economy indonesia"],
   icons: {
     icon: [
-      { url: "/Ratakiri.svg" },
+      { url: "/logo-k.svg" },
     ],
     apple: [
-      { url: "/Ratakiri.svg" },
+      { url: "/logo-k.svg" },
     ],
-    shortcut: ["/Ratakiri.svg"],
+    shortcut: ["/logo-k.svg"],
   },
   openGraph: {
     title: "KOMMA | Produk Inovatif dari Ampas Kopi",
