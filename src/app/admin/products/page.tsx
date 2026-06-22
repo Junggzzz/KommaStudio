@@ -23,7 +23,7 @@ export default function AdminProducts() {
     async function fetchProducts() {
         setLoading(true);
         try {
-            const data = await getProducts();
+            const data = await getProducts(undefined, true);
             setProducts(data as ProductWithId[]);
         } catch (error) {
             console.error("Failed to fetch products:", error);
@@ -61,6 +61,17 @@ export default function AdminProducts() {
             await fetchProducts();
         } catch (err) {
             console.error("Failed to delete product", err);
+            setLoading(false);
+        }
+    }
+
+    const handleToggleArchive = async (prod: ProductWithId) => {
+        setLoading(true);
+        try {
+            await updateProduct(prod.id, { isArchived: !prod.isArchived });
+            await fetchProducts();
+        } catch (err) {
+            console.error("Failed to toggle archive status", err);
             setLoading(false);
         }
     }
@@ -201,13 +212,19 @@ export default function AdminProducts() {
                                     <img src={prod.imageUrl} alt={prod.nameEn} className="w-16 h-16 object-cover border border-black/10 grayscale" />
                                 </div>
                                 <div className="col-span-5">
-                                    <p className="font-bold text-sm uppercase tracking-wider">{prod.nameEn}</p>
+                                    <div className="flex items-center gap-2">
+                                        <p className={`font-bold text-sm uppercase tracking-wider ${prod.isArchived ? 'text-black/40 line-through' : ''}`}>{prod.nameEn}</p>
+                                        {prod.isArchived && <span className="bg-black/10 text-[8px] px-2 py-0.5 font-bold uppercase tracking-widest text-black/60">Archived</span>}
+                                    </div>
                                     <p className="text-xs text-black/60 uppercase tracking-widest mt-1 line-clamp-1">{prod.descriptionEn}</p>
                                 </div>
                                 <div className="col-span-2">
                                     <p className="font-bold text-sm">Rp {prod.price.toLocaleString("id-ID")}</p>
                                 </div>
-                                <div className="col-span-3 flex justify-end gap-2">
+                                <div className="col-span-3 flex justify-end gap-2 flex-wrap">
+                                    <button onClick={() => handleToggleArchive(prod)} className={`px-3 py-1 text-[10px] uppercase tracking-widest font-bold border transition-colors ${prod.isArchived ? 'border-green-600 text-green-600 hover:bg-green-600 hover:text-white' : 'border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white'}`}>
+                                        {prod.isArchived ? 'Unarchive' : 'Archive'}
+                                    </button>
                                     <button onClick={() => { setCurrentProduct(prod); setIsEditing(true); }} className="px-3 py-1 text-[10px] uppercase tracking-widest font-bold border border-black hover:bg-black hover:text-white transition-colors">{t("admin.products.edit")}</button>
                                     <button onClick={() => handleDelete(prod.id)} className="px-3 py-1 text-[10px] uppercase tracking-widest font-bold border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-colors">{t("admin.products.delete")}</button>
                                 </div>

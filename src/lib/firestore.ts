@@ -11,15 +11,25 @@ export interface ProductData {
     descriptionId: string;
     price: number;
     imageUrl: string;
+    isArchived?: boolean;
 }
 
-export async function getProducts(queryLimit?: number) {
-    let q = query(collection(db, "products"));
-    if (queryLimit) {
-        q = query(collection(db, "products"), limit(queryLimit));
-    }
+export async function getProducts(queryLimit?: number, includeArchived: boolean = false) {
+    // We fetch all products first, then filter, then limit. 
+    // For large collections, we should use where("isArchived", "!=", true) and limit(queryLimit) instead.
+    const q = query(collection(db, "products"));
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    let products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() as ProductData }));
+    
+    if (!includeArchived) {
+        products = products.filter(p => !p.isArchived);
+    }
+    
+    if (queryLimit) {
+        return products.slice(0, queryLimit);
+    }
+    
+    return products;
 }
 
 export async function addProduct(data: ProductData): Promise<void> {
