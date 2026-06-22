@@ -14,6 +14,7 @@ type CartContextType = {
     cart: CartItem[];
     addToCart: (item: Omit<CartItem, "quantity">) => void;
     removeFromCart: (id: string) => void;
+    updateQuantity: (id: string, quantity: number) => void;
     toggleCart: () => void;
     isCartOpen: boolean;
     totalItems: number;
@@ -57,6 +58,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setCart((prevCart) => prevCart.filter((item) => item.id !== id));
     };
 
+    const updateQuantity = (id: string, quantity: number) => {
+        if (quantity < 1) return;
+        setCart((prevCart) =>
+            prevCart.map((item) =>
+                item.id === id ? { ...item, quantity } : item
+            )
+        );
+    };
+
     const toggleCart = () => setIsCartOpen(!isCartOpen);
 
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -69,6 +79,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                 cart,
                 addToCart,
                 removeFromCart,
+                updateQuantity,
                 toggleCart,
                 isCartOpen,
                 totalItems,

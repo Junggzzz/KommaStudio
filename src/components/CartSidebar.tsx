@@ -7,7 +7,7 @@ import { useState } from "react";
 import { saveOrder } from "@/lib/firestore";
 
 export default function CartSidebar() {
-    const { cart, isCartOpen, toggleCart, removeFromCart, totalPrice, clearCart } = useCart();
+    const { cart, isCartOpen, toggleCart, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
     const { t } = useLanguage();
     const [checking, setChecking] = useState(false);
 
@@ -57,18 +57,38 @@ export default function CartSidebar() {
                     ) : (
                         cart.map((item) => (
                             <div key={item.id} className="flex justify-between items-center py-4 border-b border-black/5">
-                                <div>
-                                    <h4 className="font-semibold">{item.name}</h4>
-                                    <p className="text-sm text-black/60">
-                                        {item.quantity} x IDR {item.price.toLocaleString("id-ID")}
+                                <div className="flex-1 pr-4">
+                                    <h4 className="font-semibold text-sm">{item.name}</h4>
+                                    <p className="text-xs text-black/60 mb-2">
+                                        IDR {item.price.toLocaleString("id-ID")}
                                     </p>
+                                    <div className="flex items-center gap-4">
+                                        <div className="flex items-center border border-black/20">
+                                            <button 
+                                                onClick={() => item.quantity > 1 ? updateQuantity(item.id, item.quantity - 1) : removeFromCart(item.id)} 
+                                                className="w-7 h-7 flex items-center justify-center text-sm hover:bg-black/5 transition-colors"
+                                            >
+                                                -
+                                            </button>
+                                            <span className="text-xs w-6 text-center font-medium">{item.quantity}</span>
+                                            <button 
+                                                onClick={() => updateQuantity(item.id, item.quantity + 1)} 
+                                                className="w-7 h-7 flex items-center justify-center text-sm hover:bg-black/5 transition-colors"
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                        <button
+                                            onClick={() => removeFromCart(item.id)}
+                                            className="text-red-500 text-xs font-medium hover:underline"
+                                        >
+                                            {t("cart.remove")}
+                                        </button>
+                                    </div>
                                 </div>
-                                <button
-                                    onClick={() => removeFromCart(item.id)}
-                                    className="text-red-500 text-sm font-medium hover:underline"
-                                >
-                                    {t("cart.remove")}
-                                </button>
+                                <div className="text-right">
+                                    <p className="font-semibold text-sm">IDR {(item.price * item.quantity).toLocaleString("id-ID")}</p>
+                                </div>
                             </div>
                         ))
                     )}
