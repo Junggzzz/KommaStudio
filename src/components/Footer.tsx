@@ -27,10 +27,19 @@ export default function Footer() {
 
                     <div className="space-y-8">
                         <h3 className="text-[10px] uppercase font-bold tracking-[0.5em] text-white/40 border-b border-white/10 pb-4">{t("footer.contact")}</h3>
-                        <ul className="space-y-4">
-                            <li className="text-xs uppercase tracking-widest text-white/70">Email: kopiampasid@gmail.com</li>
-                            <li className="text-xs uppercase tracking-widest text-white/70">WhatsApp: +62 85847487597</li>
-                            <li className="text-xs uppercase tracking-widest text-white/70">{t("footer.location")}: Bali, Indonesia</li>
+                        <ul className="space-y-4 flex flex-col items-start">
+                            <li>
+                                <a href="mailto:kopiampasid@gmail.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest text-white/70 hover:text-white transition-colors block">Email: kopiampasid@gmail.com</a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/6285847487597" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest text-white/70 hover:text-white transition-colors block">WhatsApp: +62 85847487597</a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/kommastudio_/" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest text-white/70 hover:text-white transition-colors block">Instagram: @kommastudio_</a>
+                            </li>
+                            <li>
+                                <a href="https://maps.google.com/?q=Bali,+Indonesia" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest text-white/70 hover:text-white transition-colors block">{t("footer.location")}: Bali, Indonesia</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
